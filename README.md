@@ -6,7 +6,7 @@
 \quad\text{where } n-1 = 2^s d
 ```
 
-## Definition of M(n)
+## Probablistic-Determinstic Hybrid Miller Rabin prime detector M(n)
 
 The function M(n) is defined as:
 
@@ -23,6 +23,8 @@ M(n) =
 ```
 **Note:** S = {2,3,5,7,11,13,17,19,23,29,31,37\}, W<sub>64</sub>={2,325,9375,28178,450775,9780504,1795265022}
 
+**Time Complexity:**  O(k (log n)³)
+
 ## Optimized Willan's Prime computer P(n)
 
 The function P(n) is defined as:
@@ -32,3 +34,5 @@ p_n = \sum_{m=1}^{B(n)} \mathbf{1}\!\left\{\,1 + \sum_{j=1}^m M(j) \le n\,\right
 ```math
 \text{Note: } B(n) \\ = n(\log n + \log\log n) + 3.
 ```
+**Overall Time Complexity:**  O(n (log n)⁴)
+
