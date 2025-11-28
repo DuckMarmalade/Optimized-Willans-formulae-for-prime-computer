@@ -36,3 +36,83 @@ p_n = \sum_{m=1}^{B(n)} \mathbf{1}\!\left\{\,1 + \sum_{j=1}^m M(j) \le n\,\right
 ```
 **Overall Time Complexity:**  O(n (log n)⁴)
 
+# Explanation of Modified Willans Prime Computer
+
+This project computes the **nth prime number** using a combination of:
+- A fast **Miller–Rabin primality test**
+- A **Rosser–Schoenfeld upper bound** for efficient searching
+- A **modified Willans-style counting approach**
+
+The implementation is optimized for correctness up to 64-bit integers and remains probabilistically reliable for larger values.
+
+---
+
+## 📌 Features
+
+- Deterministic primality testing for all 64-bit integers
+- Probabilistic testing for large numbers
+- Efficient upper bound estimation for the nth prime
+- Iterative counting method to extract the nth prime
+
+---
+
+## 📂 Function Explanations
+
+---
+
+### ✅ `is_prime(n)`
+
+**Purpose:**  
+Checks whether a given number `n` is prime using the **Miller–Rabin primality test**.
+
+**How it works (brief):**
+- Eliminates small numbers and small prime divisibility quickly.
+- Decomposes `n-1` into the form `d × 2^s`.
+- Uses:
+  - A **deterministic witness set** for numbers less than `2^64`
+  - A **probabilistic test** with 8 random bases for larger numbers
+
+**Guarantees:**
+- Exact correctness for all 64-bit integers
+- Extremely low error probability beyond 64 bits
+
+---
+
+### ✅ `upper_bound_nth_prime(n)`
+
+**Purpose:**  
+Returns an **upper bound** large enough to guarantee that the nth prime lies below it.
+
+**Method Used:**  
+Rosser–Schoenfeld inequality: pₙ < n (log n + log log n)
+
+
+**Why it’s needed:**  
+This prevents unnecessary searching and ensures the loop in `modified_willans` terminates correctly.
+
+---
+
+### ✅ `modified_willans(n)`
+
+**Purpose:**  
+Computes the **nth prime number** using a modified Willans-style counting mechanism.
+
+**How it works:**
+1. Computes an upper bound `B(n)`
+2. Iterates from `1` to `B(n)`
+3. Counts primes using `is_prime`
+4. Uses a counting indicator (`term`) to accumulate until the nth prime is reached
+5. Terminates immediately once the nth prime is found
+
+**Input Constraint:**  
+- `n` must be ≥ 1
+
+**Output:**  
+- Returns the exact nth prime
+
+---
+
+
+
+
+
